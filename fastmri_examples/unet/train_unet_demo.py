@@ -81,7 +81,7 @@ def build_args():
 
     # basic args
     path_config = pathlib.Path("../../fastmri_dirs.yaml")
-    num_gpus = 2
+    num_gpus = 1
     backend = "ddp"
     batch_size = 1 if backend == "ddp" else num_gpus
 
@@ -144,11 +144,11 @@ def build_args():
     parser.set_defaults(
         gpus=num_gpus,  # number of gpus to use
         replace_sampler_ddp=False,  # this is necessary for volume dispatch during val
-        accelerator=backend,  # what distributed version to use
+        # accelerator=backend,  # what distributed version to use
         seed=42,  # random seed
         deterministic=True,  # makes things slower, but deterministic
         default_root_dir=default_root_dir,  # directory for logs and checkpoints
-        max_epochs=50,  # max number of epochs
+        max_epochs=1,  # max number of epochs
     )
 
     args = parser.parse_args()
